@@ -50,86 +50,7 @@ banner()
 
 
 input_file = input("Enter the CSV file name: ")
-# users = []
-# with open(input_file, encoding='UTF-8') as f:
-#     rows = csv.reader(f,delimiter=",",lineterminator="\n")
-#     next(rows, None)
-#     for row in rows:
-#         user = {}
-#         user['username'] = row[0]
-#         try:
-#             user['id'] = int(row[1])
-#             user['access_hash'] = int(row[2])
-#         except IndexError:
-#             print ('users without id or access_hash')
-#         users.append(user)
 
-# #random.shuffle(users)
-# chats = []
-# last_date = None
-# chunk_size = 30
-# groups=[]
-
-# result = client(GetDialogsRequest(
-#             offset_date=last_date,
-#             offset_id=0,
-#             offset_peer=InputPeerEmpty(),
-#             limit=chunk_size,
-#             hash = 0
-#         ))
-# chats.extend(result.chats)
-
-# for chat in chats:
-#     try:
-#         # if chat.megagroup== True: # CONDITION TO ONLY LIST MEGA GROUPS.
-#         groups.append(chat)
-#     except:
-#         continue
-
-# print('Choose a group to add members:')
-# i=0
-# for group in groups:
-#     print(str(i) + '- ' + group.title)
-#     i+=1
-
-# g_index = input("Enter a Number: ")
-# target_group=groups[int(g_index)]
-# print('\n\nGrupo elegido:\t' + groups[int(g_index)].title)
-
-# target_group_entity = InputPeerChannel(target_group.id,target_group.access_hash)
-
-# mode = int(input("Enter 1 to add by username or 2 to add by ID: "))
-
-# error_count = 0
-
-# for user in users:
-#     try:
-#         print ("Adding {}".format(user['username']))
-#         if mode == 1:
-#             if user['username'] == "":
-#                 continue
-#             user_to_add = client.get_input_entity(user['username'])
-#         elif mode == 2:
-#             user_to_add = InputPeerUser(user['id'], user['access_hash'])
-#         else:
-#             sys.exit("Invalid Mode Selected. Please Try Again.")
-#         client(InviteToChannelRequest(target_group_entity,[user_to_add]))
-#         # print("Waiting 60 Seconds...")
-#         # time.sleep(60)
-
-#     except PeerFloodError:
-#         print("Getting Flood Error from telegram. Script is stopping now. Please try again after some time.")
-#     except UserPrivacyRestrictedError:
-#         print("The user's privacy settings do not allow you to do this. Skipping.")
-#     except:
-#         traceback.print_exc()
-#         print("Unexpected Error")
-#         error_count += 1
-#         if error_count > 10:
-#             sys.exit('too many errors')
-#         continue
-
-# input_file = sys.argv[1]
 users = []
 with open(input_file, encoding='UTF-8') as f:
     rows = csv.reader(f,delimiter=",",lineterminator="\n")
@@ -176,7 +97,7 @@ target_group=groups[int(g_index)]
  
 target_group_entity = InputPeerChannel(target_group.id,target_group.access_hash)
  
-print(gr+"[1] add member by user ID\n[2] add member by username ")
+print(gr+"[1] add member by username\n[2] add member by user ID ")
 mode = int(input(gr+"Input : "+re)) 
 n = 0
 
@@ -195,8 +116,6 @@ for user in users:
 	        else:
 	            sys.exit(re+"[!] Invalid Mode Selected. Please Try Again.")
 	        client(InviteToChannelRequest(target_group_entity,[user_to_add]))
-	        print(gr+"[+] Waiting for 10-15 Seconds...")
-	        time.sleep(15)
 	    except PeerFloodError:
 	        print(re+"[!] Getting Flood Error from telegram. \n[!] Script is stopping now. \n[!] Please try again after some time.")
                 # time.sleep(500)
