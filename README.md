@@ -2,7 +2,8 @@
   Telegram Group Scrapper
 </p>
 <p align="center">
-  Extract All members from any group on telegram into a csv and add them into your group by one command only!
+  Extract All members from any group on telegram into a csv and,
+  add them into your group by one command only!
 </p>
 
 ---
